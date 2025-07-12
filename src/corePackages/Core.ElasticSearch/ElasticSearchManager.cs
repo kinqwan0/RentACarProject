@@ -103,7 +103,11 @@ public class ElasticSearchManager : IElasticSearch
         ISearchResponse<T>? searchResponse = await elasticClient.SearchAsync<T>(s => s
                                                  .Index(fieldParameters.IndexName)
                                                  .From(fieldParameters.From)
-                                                 .Size(fieldParameters.Size));
+                                                 .Size(fieldParameters.Size)
+                                                 .Query(q => q
+                                                     .Match(m => m
+                                                         .Field(fieldParameters.FieldName)
+                                                         .Query(fieldParameters.Value))));
 
         List<ElasticSearchGetModel<T>> list = searchResponse.Hits.Select(x => new ElasticSearchGetModel<T>
         {
