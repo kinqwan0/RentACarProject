@@ -1,9 +1,7 @@
-﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using AutoMapper;
+using Application.Features.someFeature.Dtos;
+using Application.Features.someFeature.Commands.CreateSomeFeature;
+using Domain.Entities;
 
 namespace Application.Features.someFeature.Profiles
 {
@@ -11,6 +9,8 @@ namespace Application.Features.someFeature.Profiles
     {
         public MappingProfiles()
         {
+            CreateMap<SomeFeatureEntity, CreatedSomeFeatureEntityDto>().ReverseMap();
+            CreateMap<SomeFeatureEntity, CreateSomeFeatureEntityCommand>().ReverseMap();
         }
     }
 }
